@@ -4,6 +4,8 @@
 
 ![SkyUnit](Images/Logo.jpg)
 
+[![Download SkyUnit](https://github.com/SkyrimScripting/SkyrimScripting/raw/main/Resources/DownloadButton.png)](https://github.com/SkyrimScripting/SkyUnit/releases/download/v1/SkyUnit.7z)
+
 # `v1`
 
 The goal for `v1` of `SkyUnit` is to be _as minimal as possible_:

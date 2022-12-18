@@ -1,10 +1,10 @@
 # SkyUnit
 
+[![Download SkyUnit](https://github.com/SkyrimScripting/SkyrimScripting/raw/main/Resources/DownloadButton.png)](https://github.com/SkyrimScripting/SkyUnit/releases/download/v1/SkyUnit.7z)
+
 > SkyUnit is a Unit Testing Framework for Skyrim Papyrus Scripts
 
 ![SkyUnit](Images/Logo.jpg)
-
-[![Download SkyUnit](https://github.com/SkyrimScripting/SkyrimScripting/raw/main/Resources/DownloadButton.png)](https://github.com/SkyrimScripting/SkyUnit/releases/download/v1/SkyUnit.7z)
 
 # `v1`
 

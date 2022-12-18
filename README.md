@@ -17,3 +17,4 @@ The goal for `v1` of `SkyUnit` is to be _as minimal as possible_:
     - A summary of all test results is printed at the very end
 - `SkyUnit.Assert(bool, [string message])` is the only assertion provided
     - On a failure, the Papyrus source code file name and line number are provided
+- None of this is configurable

@@ -15,7 +15,8 @@
           New-Item -ItemType SymbolicLink -Path "C:\Modding\PapyrusImports" -Target "C:\Users\mrowr\Dropbox\Skyrim\PapyrusImports"
     -->
     <Variables>
-        <Variable Name="ModName" Value="SkyUnit.Scripts" />
+        <Variable Name="ModName" Value="SkyUnit" />
+        <Variable Name="ExamplesModName" Value="SkyUnit.Examples" />
         <Variable Name="Mods" Value="C:\Modding\Mods" />
         <Variable Name="Imports" Value="C:\Modding\PapyrusImports" />
     </Variables>
@@ -30,8 +31,16 @@
         <Folder>.</Folder>
     </Folders>
     <PostBuildEvent Description="Deploy scripts to Mods folder" UseInBuild="true">
-        <Command>(if exist "@Mods\@ModName" rmdir /s /q "@Mods\@ModName")</Command>
-        <Command>mkdir "@Mods\@ModName\Scripts"</Command>
-        <Command>xcopy /e .\Build\Papyrus "@Mods\@ModName\Scripts"</Command>
+        <!-- Push SkyUnit scripts to mod folder (including .psc for packaging) -->
+        <Command>(if exist "@Mods\@ModName\Scripts" rmdir /s /q "@Mods\@ModName\Scripts")</Command>
+        <Command>(if exist "@Mods\@ModName\Source" rmdir /s /q "@Mods\@ModName\Source")</Command>
+        <Command>mkdir "@Mods\@ModName\Scripts\Source"</Command>
+        <Command>mkdir "@Mods\@ModName\Source\Scripts"</Command>
+        <Command>xcopy SkyUnit.psc "@Mods\@ModName\Scripts\Source\"</Command>
+        <Command>xcopy SkyUnit.psc "@Mods\@ModName\Source\Scripts\"</Command>
+        <!-- Push the example papyrus unit test .pex scripts (actually just all scripts) to an example mod -->
+        <Command>(if exist "@Mods\@ExamplesModName\Scripts" rmdir /s /q "@Mods\@ExamplesModName\Scripts")</Command>
+        <Command>mkdir "@Mods\@ExamplesModName\Scripts"</Command>
+        <Command>xcopy /e .\Build\Papyrus "@Mods\@ExamplesModName\Scripts"</Command>
     </PostBuildEvent>
 </PapyrusProject>

@@ -107,6 +107,7 @@ namespace SkyUnit {
     void RunNextUnitTestFunction() {
         PrintUnitTestFunctionResult();
         if (UnitTestScriptFunctionNames.empty()) {
+            CurrentlyRunning_FunctionName = "";
             RunNextUnitTestScript();
             return;
         }
@@ -145,10 +146,16 @@ namespace SkyUnit {
         spdlog::flush_on(spdlog::level::info);
     }
 
-    bool SkyUnit_Assert(RE::StaticFunctionTag*, bool result, std::string failureMessage) {
+    bool SkyUnit_Assert(RE::BSScript::Internal::VirtualMachine* vm, const RE::VMStackID stackID, RE::StaticFunctionTag*,
+                        bool result, std::string failureMessage) {
         if (!result) {
             CurrentTestAssertionErrorCount++;
-            Log("FAIL! {}", failureMessage);
+            auto* frame = vm->allRunningStacks.find(stackID)->second->top->previousFrame;
+            auto fn = frame->owningFunction;
+            auto fileName = fn->GetSourceFilename();
+            uint32_t lineNumber;
+            fn->TranslateIPToLineNumber(frame->instructionPointer, lineNumber);
+            Log("[{}:{}] {}", fileName, lineNumber, failureMessage);
         }
         return result;
     }
